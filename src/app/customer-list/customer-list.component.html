@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of newCustomerList">
+                    <td (click)="sendCustomerName(customer.customerName)">{{customer.customerName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

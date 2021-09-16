@@ -1,3 +1,4 @@
+import {Address} from './address'
 export interface Customer {
     id : number | null,
     customerName : string,
@@ -5,5 +6,6 @@ export interface Customer {
     motherName: string,
     countryId: number | string,
     maritalStatus: number,
-    customerPhoto: string | null
+    customerPhoto: string | null,
+    address : Address[] | null
 }

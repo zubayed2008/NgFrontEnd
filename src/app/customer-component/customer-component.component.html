@@ -9,7 +9,7 @@
                     <label for="customerName">Customer Name :</label>
                 </div>
                 <div class="col-6">
-                    <input formControlName="customerName" type="text" id="customerName" name="customerName" class="form-control">
+                    <input formControlName="customerName" type="text" id="customerName" name="customerName" class="form-control" value="{{selectedCustomer?.customerName}}">
                     <div *ngIf="f.customerName.touched && f.customerName.invalid" class="alert alert-danger">
                         <div *ngIf="f.customerName.errors && f.customerName.errors.required">Customer Name is required.</div>
             
@@ -24,7 +24,7 @@
                     <label for="fatherName">Father Name :</label>
                 </div>
                 <div class="col-6">
-                    <input formControlName="fatherName" type="text" id="fatherName" name="fatherName" class="form-control">
+                    <input formControlName="fatherName" type="text" id="fatherName" name="fatherName" class="form-control" value="{{selectedCustomer?.fatherName}}">
                     <div *ngIf="f.fatherName.touched && f.fatherName.invalid" class="alert alert-danger">
                         <div *ngIf="f.fatherName.errors && f.fatherName.errors.required">Father Name is required.</div>
             
@@ -39,7 +39,7 @@
                     <label for="motherName">Mother Name :</label>
                 </div>
                 <div class="col-6">
-                    <input formControlName="motherName" type="text" id="motherName" name="motherName" class="form-control">
+                    <input formControlName="motherName" type="text" id="motherName" name="motherName" class="form-control" value="{{selectedCustomer?.motherName}}">
                     <div *ngIf="f.motherName.touched && f.motherName.invalid" class="alert alert-danger">
                         <div *ngIf="f.motherName.errors && f.motherName.errors.required">Mother Name is required.</div>
             
@@ -54,8 +54,14 @@
                     <label for="motherName">Marital Status :</label>
                 </div>
                 <div class="col-2" *ngFor="let stats of enumKeys">
-                    <ng-container
-                    *ngIf="stats == newCustomer.maritalStatus; then selectedStatus; else Status">
+                    <input formControlName="maritalStatus" class="radio" type="radio" [checked]="this.selectedCustomer?.maritalStatus == stats"  name="maritalStatus" [value]="stats">
+                        {{maritalStatus[stats]}}
+                        <div *ngIf="f.maritalStatus.touched && f.maritalStatus.invalid" class="alert alert-danger">
+                            <div *ngIf="f.maritalStatus.errors && f.maritalStatus.errors.required">Marital Status is required.</div>
+                        </div>
+                    
+                    <!-- <ng-container
+                    *ngIf="stats == selectedCustomer?.maritalStatus || stats == newCustomer.maritalStatus; then selectedStatus; else Status">
                     </ng-container>
                     <ng-template #Status>
                         <input formControlName="maritalStatus" class="radio" type="radio" name="maritalStatus" id="maritalStatus-{{stats}}" [value]="stats" (change)='newCustomer.maritalStatus=$any($event.target).value;'>
@@ -67,7 +73,7 @@
                     </ng-template>
                     <div *ngIf="f.maritalStatus.touched && f.maritalStatus.invalid" class="alert alert-danger">
                         <div *ngIf="f.maritalStatus.errors && f.maritalStatus.errors.required">Marital Status is required.</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="row pt-1">
@@ -76,7 +82,7 @@
                 </div>
                 <div class="col-6">
                     <select formControlName="countryId" id="countryId" name="countryId" class="form-control">
-                        <option *ngFor="let country of countries" [value]="country.code">
+                        <option *ngFor="let country of countries" [value]="country.code" [selected]="selectedCustomer?.countryId == country.code">
                             {{country.name}}
                         </option>
                         <div *ngIf="f.countryId.touched && f.countryId.invalid" class="alert alert-danger">

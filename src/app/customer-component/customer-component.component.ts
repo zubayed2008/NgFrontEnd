@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output,Input  } from '@angular/core';
 import {Customer} from '../models/customer'
 import {maritalStatus} from '../Appconstant/enums'
 import { FormGroup ,FormControl,Validators,FormBuilder } from "@angular/forms";
@@ -17,15 +17,30 @@ export class CustomerComponentComponent implements OnInit {
   constructor(public fb: FormBuilder) {
     this.enumKeys = Object.keys(maritalStatus).filter(f => !isNaN(Number(f)));
   }
-  newCustomer : Customer = {
+
+  @Output() CustomerEvent = new EventEmitter<Customer>();
+
+  @Input() selectedCustomer: Customer | undefined = {
     id : null,
     customerName : '',
     fatherName: '',
     motherName: '',
     countryId: 1,
-    maritalStatus: 0,
-    customerPhoto: null
+    maritalStatus: 1,
+    customerPhoto: null,
+    address : null
   };
+
+ newCustomer : Customer = {
+  id : null,
+  customerName : '',
+  fatherName: '',
+  motherName: '',
+  countryId: 1,
+  maritalStatus: 2,
+  customerPhoto: null,
+  address : null
+};
 
   ngOnInit(): void {
 
@@ -39,12 +54,10 @@ export class CustomerComponentComponent implements OnInit {
 
     motherName: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z_.-]{2,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?$')]),
     
-    maritalStatus: new FormControl('', [Validators.required]),
+    maritalStatus: new FormControl(this.selectedCustomer?.maritalStatus, [Validators.required]),
 
     countryId: new FormControl('', [Validators.required])
 
-
-    
   }); 
 
   get f(){
@@ -53,6 +66,19 @@ export class CustomerComponentComponent implements OnInit {
 
   submit(){
     console.log(this.registrationForm.value);
+
+    this.newCustomer = {
+      id : this.registrationForm.value.id,
+      customerName : this.registrationForm.value.customerName,
+      fatherName: this.registrationForm.value.fatherName,
+      motherName: this.registrationForm.value.motherName,
+      countryId: this.registrationForm.value.countryId,
+      maritalStatus: this.registrationForm.value.maritalStatus,
+      customerPhoto: null,
+      address : null
+    };
+    this.CustomerEvent.emit(this.newCustomer);
+
   }
 
   countries : any[] =  [

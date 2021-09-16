@@ -1,1 +1,10 @@
-<app-customer-component></app-customer-component>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <app-customer-list [newCustomerList]="customerList"  (selectedCustomerEvent)="receiveCustomerName($event)"></app-customer-list>
+        </div>
+        <div class="col-8">
+            <app-customer-component (CustomerEvent)="receiveCustomer($event)" [selectedCustomer]="selectedCustomer"></app-customer-component>
+        </div>
+    </div>
+</div>
