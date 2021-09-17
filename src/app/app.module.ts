@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerComponentComponent } from './customer-component/customer-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CustomerAddressComponent } from './customer-address/customer-address.component';
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponentComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerAddressComponent
   ],
   imports: [
     BrowserModule,

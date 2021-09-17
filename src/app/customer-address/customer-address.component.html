@@ -1,0 +1,34 @@
+<p>customer-address works!</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+            <div [formGroup]="addresssForm">
+                <input formControlName="newAddress" class="form-control" type="text" placeholder="Enter Address" />
+            </div>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="insertAddress();">Insert</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <tr *ngFor="let address of customerAddress">
+            <td>
+                <input id="addedAddress_{{address.id}}"  class="form-control" type="text" placeholder="Enter Address" [value]="address.customerAddress" />
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="updateAddress(address.id);" >Update</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

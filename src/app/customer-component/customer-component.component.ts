@@ -54,7 +54,7 @@ export class CustomerComponentComponent implements OnInit {
 
     motherName: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z_.-]{2,}(?: [a-zA-Z]+)?(?: [a-zA-Z]+)?$')]),
     
-    maritalStatus: new FormControl(this.selectedCustomer?.maritalStatus, [Validators.required]),
+    maritalStatus: new FormControl('', [Validators.required]),
 
     countryId: new FormControl('', [Validators.required])
 
@@ -87,7 +87,7 @@ export class CustomerComponentComponent implements OnInit {
   {name: 'Albania', code: 'AL'}, 
   {name: 'Algeria', code: 'DZ'}, 
   {name: 'American Samoa', code: 'AS'}, 
-  {name: 'AndorrA', code: 'AD'}, 
+  {name: 'Andorr', code: 'AD'}, 
   {name: 'Angola', code: 'AO'}, 
   {name: 'Anguilla', code: 'AI'}, 
   {name: 'Antarctica', code: 'AQ'}, 
